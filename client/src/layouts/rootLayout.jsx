@@ -6,7 +6,7 @@ const RootLayout = () => {
   // pass in trip obj
   // const [currentTrip, setCurrentTrip] = useState(null);
 	// const user = useLoaderData();
-	// // const id = user._id;
+	// const id = user._id;
 	// console.log('user: ', user)
 
   return (

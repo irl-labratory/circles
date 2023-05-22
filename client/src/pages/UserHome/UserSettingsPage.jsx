@@ -4,40 +4,13 @@ import { useNavigate, Form, Navigate } from 'react-router-dom';
 import { userContext } from '../../context.js';
 // import './UserSettingsPage.scss'
 
-const testArray = [
-    {date: '1/2/2022', name: 'Yellowstone'},
-    {date: '5/7/2022', name: 'Grand Canyons'},
-    {date: '7/22/2022', name: 'Yosemite'},
-    {date: '9/14/2022', name: 'Smokey Mountains'},
-    {date: '1/3/2023', name: 'Glacier'},
-    {date: '2/20/2023', name: 'Teton'},
-    {date: '3/17/2023', name: 'Acadia'},
-]
-
-
 const UserSettingsPage = () => {
-
-
-    /////////////////////////////////////////////////////////////
-                    // HARD CODED USER
-    const testUser = {
-        username: 'luke',
-        password: 'password',
-        trips: testArray
-    }
-
-    ////////////////////////////////////////////////////////////
-
-    // console.log('-- TEST USER --', testUser)
 
     const { user, setUser } = useContext(userContext);
 
-    // const [newUserName, setNewUsername] = useState(testUser.username);
-    // const [newPassword, setNewPassword] = useState(testUser.password);
-    // const [newTripsArr, setNewTripsArr] = useState(testUser.trips)
     const [newUserName, setNewUsername] = useState(user.username);
     const [newPassword, setNewPassword] = useState(user.password);
-    const [newTripsArr, setNewTripsArr] = useState(user.trips)
+    const [newCircleArr, setNewCircleArr] = useState(user.cirlces)
     
     const navigate = useNavigate()
 
@@ -46,18 +19,18 @@ const UserSettingsPage = () => {
         e.preventDefault()
         window.alert('Account information has been updated.')
         // update the user state with the new information
-        setUser({ username: newUserName, password: newPassword, trips: newTripsArr})
+        setUser({ username: newUserName, password: newPassword, circles: newCircleArr})
     }
     
     // function to delete a trip from a users trip
     function deleteTrip(e) {
         if (window.confirm('Are you sure you want to delete this trip?')) {
             // filter the array to remove the element that was clicked on
-            const updatedTrips = newTripsArr.filter(trip => trip.name !== e.target.value)
-            // update the trips array state
-            setNewTripsArr([...updatedTrips])
+            const updatedCircles = newCirclesArr.filter(trip => trip.name !== e.target.value)
+            // update the circle array state
+            setNewCircleArr([...updatedCircles])
             // update the user state with the new information
-            setUser({...user, trips: [...updatedTrips]})
+            setUser({...user, circles: [...updatedCircles]})
         } else {
             return
         }
@@ -94,10 +67,6 @@ const UserSettingsPage = () => {
         // .catch(error => console.log('Error, ', error))
     }
 
-    // function to log the current state, used for testing
-    // function logState() {
-    //     console.log('test user', user)
-    // }
 
     return (
         <main className='settings-page'>
@@ -114,11 +83,10 @@ const UserSettingsPage = () => {
                     <input type='text' placeholder='new password' onChange={(e) => setNewPassword(e.target.value)}/>
                     <button className='password-update' onClick={handleSubmit}>update password</button>
                 </div>
-                <h2 className='trip-title'>Past Trips</h2>
-                <div className="update-trips">
-                    {/* <h2>Past Trips</h2> */}
+                <h2 className='trip-title'>Circles</h2>
+                <div className="update-circles">
                     <div className="trip-log">
-                        {newTripsArr.map((trip, i) => <button key={i} id={i} value={trip.name} className='trip' onClick={deleteTrip}>{trip.date} - {trip.name}</button>)}
+                        {newCirclesArr.map((trip, i) => <button key={i} id={i} value={trip.name} className='trip' onClick={deleteTrip}>{trip.date} - {trip.name}</button>)}
                     </div>
                 </div>
                 <div className="save-account">
