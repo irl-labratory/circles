@@ -45,7 +45,7 @@ $primary-font-color: rgb(78, 76, 76);
     
     .update-username h2, 
     .update-password h2,
-    .update-trips h2, 
+    .update-circles h2, 
     .delete-account h2 {
         margin: 0.7rem 0;
     }
@@ -109,7 +109,7 @@ $primary-font-color: rgb(78, 76, 76);
         margin: 0.5rem 0;
     }
     
-    .update-trips {
+    .update-circles {
         display: flex;
         flex-direction: column;
         justify-content: space-between;

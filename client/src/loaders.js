@@ -8,7 +8,7 @@ export const userLoader = async ({ params }) => {
         // console.log('loader:', user)
         return user
     } catch (err) {
-        return {username: 'Bilbo Baggins', trips: [{date: Date.now(), tripName: 'There and Back again'}, {date: Date.now(), tripName: 'The Lord of the Rings'}]}
+        return {username: 'Bilbo Baggins', circle: [{date: Date.now(), tripName: 'There and Back again'}, {date: Date.now(), tripName: 'The Lord of the Rings'}]}
     }
 }
 

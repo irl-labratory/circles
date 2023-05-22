@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate, Form } from "react-router-dom";
-import { tripContext } from "../context";
+import { circleContext } from "../context";
 import { userContext } from '../context';
 // import '../scss/NewTripPage.scss';
 
@@ -13,9 +13,9 @@ const newTripPage = () => {
 		const { currentTrip, setCurrentTrip } = useContext(tripContext);
     const navigate = useNavigate();
 		const { user, setUser } = useContext(userContext);
-		const { _id, trips, username } = user;
+		const { _id, circles, username } = user;
 		const user_id = _id; //rename for middleware usage
-		// console.log('userhomepage id, trips, username', _id, trips, username);
+
 
     // handler function for the input fields
     const handleLocation = (e) => {
@@ -33,7 +33,6 @@ const newTripPage = () => {
     async function handleSubmit(e) {
         try {
 					e.preventDefault();
-					// console.log('userhomepage id, trips, username', user_id, trips, username);
 					// post request to server
 					const response = await fetch(`/api/trip/new_trip`, { //make sure we are getting this user._id
 							method: "POST",
@@ -95,16 +94,3 @@ const newTripPage = () => {
 };
 
 export default newTripPage;
-
-
-
-
-/*
-					// this responses should have the _id of the new trips' database
-					// id --> _id
-					// reset the state of the page to force re-render
-					setLocation('');
-					setDate('');
-					// setTripType('');
-					setTripName('');
-*/
