@@ -1,8 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate, useParams, useLoaderData } from 'react-router-dom';
-import { userContext } from '../../context';
+import { mainContext } from '../../context';
+import Calendar from 'react-calendar';
+// import { obj } from './testUserData';
 
-// import './UserHomePage.scss';
+// console.log(obj)
+
+
 // Child Components
 // import UserCircleDisplay from './UserCirclesDisplay';
 
@@ -10,42 +14,62 @@ const svg = <svg fill="#000000" height="22px" width="25px" version="1.1" id="Cap
 
 const UserHomePage = () => {
     // data from use loader data
-    const userData = useLoaderData();
-	const { user, setUser } = useContext(userContext);
-    setUser(userData);
+    const mainObjData = useLoaderData();
+	const { mainObj, setMainObj } = useContext(mainContext);
+    const [newEvent, setNewEvent] = useState('')
+    const user = mainObjData.user.username
+    // setMainObj(mainObjData)
+    const [date, setDate] = useState(new Date());
 		
-    const navigate = useNavigate();
+    /////////////////////////////////////////////////////////
 
-    // where do I input the userId from rootLayout and update the setCurrentCirlce
-    const handleCreateTrip = (e) => {
-        e.preventDefault();
-        return navigate('/new_trip');
-    }
+    // User settings page navigation
+    const navigate = useNavigate();
 
     const handleSettings = (e) => {
         e.preventDefault();
         return navigate('/user_settings');
     }
 
-    // NOT built yet
-    // const handleJoinTrip = (e) => {
-    //     e.preventDefault();
-    //     console.log('not built out yet');
-    //     // patch
-    //     // TODO make functionality in backend lol
-    //     // const URL = '/circles/' + res.trip_id;
-    //     // return redirect(URL);
-    // }
+    /////////////////////////////////////////////////////////
+
+    // const date = Date.now()
+
+    // When you clink on this date div
+    const onChange = (date) => {
+        setDate(date);
+        console.log(date) // -> Mon May 22 2023 00:00:00 GMT-0500 (CDT)
+        console.log(typeof date)
+      };
+    
+      const tileContent = ({ date, view }) => {
+        if (view === 'month') {
+          const now = new Date();
+          // check if the tile date is today
+          if (
+            date.getYear() === now.getYear() &&
+            date.getMonth() === now.getMonth() &&
+            date.getDate() === now.getDate()
+          ) {
+            // calculate the height (or any other property) based on the current time
+            const height = (now.getHours() / 24) * 100;
+            return <div style={{ height: `${height}%`, backgroundColor: 'blue' }} />;
+          }
+        }
+        
+        return null;
+      };
 
     return (
         <div className="user-home-page">
+            {JSON.stringify(mainObj)}
             <div className='settings'>
                 <button onClick={handleSettings} className='settings-btn'>{svg}</button>
             </div>
             <div className="user-display">
                 <div className='join-trip'>
                     <div className='create-trip'>
-                        <button onClick={handleCreateTrip}>Create New Trip</button>
+                        <Calendar onChange={onChange} value={date} tileContent={tileContent} />
                     </div>
                 </div>
                 <div className='cirlces'>
