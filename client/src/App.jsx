@@ -9,7 +9,6 @@ import './styles/index.scss';
 import LoginPage from './pages/LoginPage.jsx';
 import SignUpPage from './pages/SignUpPage.jsx';
 import NewTripPage from './pages/NewTripPage.jsx';
-import TripHomePage from './pages/TripHome/TripHomePage.jsx';
 import UserHomePage from './pages/UserHome/UserHomePage.jsx';
 import UserSettingsPage from './pages/UserHome/UserSettingsPage.jsx';
 import RootLayout from './layouts/rootLayout';
@@ -39,11 +38,11 @@ const router = createBrowserRouter(
         path='/new_trip'
         element={<NewTripPage key='new_trip' />}
       />
-      <Route
+      {/* <Route
         path='/trip/:trip_id'
         element={<TripHomePage key='trip_home' />}
         loader={tripLoader}
-      />
+      /> */}
     </Route>
   )
 )

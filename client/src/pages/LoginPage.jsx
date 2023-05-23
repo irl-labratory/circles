@@ -1,6 +1,6 @@
 import { useNavigate, Form } from 'react-router-dom';
 import { useState } from 'react';
-import alpaca from '../assets/alpaca_cool.jpg';
+
 
 const LoginPage = () => {
 
@@ -66,11 +66,7 @@ const LoginPage = () => {
 	return (
 		<main className='login-page'>
 			<div className='login-div'>
-        <img
-          src={alpaca}
-          alt={'alpaca'}
-          className="alpaca-image"
-        />
+
         <p id='name-label' className='username-subhead'>
           Welcome
         </p>

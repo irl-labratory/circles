@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate, Form } from "react-router-dom";
-import { circleContext } from "../context";
+// import { circleContext } from "../context";
 import { userContext } from '../context';
 // import '../scss/NewTripPage.scss';
 
