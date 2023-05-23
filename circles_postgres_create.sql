@@ -54,9 +54,8 @@ COMMENT ON COLUMN circles.events.daypart IS 'can be morning, afternoon, evening,
 
 COMMENT ON COLUMN circles.events.note IS 'optional note for an event';
 
-
- INSERT INTO circles.circles VALUES (1, 'Climb time!');
- INSERT INTO circles.circles VALUES (1, 'Hack Hour');
+  INSERT INTO circles.circles VALUES (1, 'Climb time!');
+ INSERT INTO circles.circles VALUES (2, 'Hack Hour');
 
  INSERT INTO circles.users VALUES (1, 'jnoor', 'Jasmine', 'user1@gmail.com');
  INSERT INTO circles.users VALUES (2, 'jdonato', 'John', 'user2@gmail.com');
@@ -66,20 +65,6 @@ COMMENT ON COLUMN circles.events.note IS 'optional note for an event';
  INSERT INTO circles.users VALUES (6, 'cashley', 'Christian', 'user6@gmail.com');
  INSERT INTO circles.users VALUES (7, 'ma', 'Michael Angelo', 'user7@gmail.com');
  INSERT INTO circles.users VALUES (8, 'nz', 'Ngoc', 'user8@gmail.com');
-
- INSERT INTO circles.users VALUES (2, 1);
- INSERT INTO circles.users VALUES (2, 2);
- INSERT INTO circles.users VALUES (2, 3);
- INSERT INTO circles.users VALUES (2, 4);
- INSERT INTO circles.users VALUES (2, 5);
- INSERT INTO circles.users VALUES (2, 6);
- INSERT INTO circles.users VALUES (2, 7);
- INSERT INTO circles.users VALUES (2, 8);
- INSERT INTO circles.users VALUES (2, 9);
- INSERT INTO circles.users VALUES (1, 1);
- INSERT INTO circles.users VALUES (1, 2);
- INSERT INTO circles.users VALUES (1, 3);
- INSERT INTO circles.users VALUES (1, 4);
 
  INSERT INTO circles.events VALUES (1, 1, '2023-05-27', 'evening', '');
  INSERT INTO circles.events VALUES (2, 1, '2023-05-29', 'morning', 'lead climbing');
@@ -101,15 +86,6 @@ COMMENT ON COLUMN circles.events.note IS 'optional note for an event';
  INSERT INTO circles.event_users VALUES (4, 3);
  INSERT INTO circles.event_users VALUES (4, 4);
  INSERT INTO circles.event_users VALUES (5, 4);
- INSERT INTO circles.event_users VALUES (6, 7);
- INSERT INTO circles.event_users VALUES (6, 8);
- INSERT INTO circles.event_users VALUES (6, 1);
- INSERT INTO circles.event_users VALUES (6, 1);
- INSERT INTO circles.event_users VALUES (6, 1);
- INSERT INTO circles.event_users VALUES (6, 1);
- INSERT INTO circles.event_users VALUES (6, 1);
- INSERT INTO circles.event_users VALUES (6, 1);
- INSERT INTO circles.event_users VALUES (6, 1);
  INSERT INTO circles.event_users VALUES (6, 1);
  INSERT INTO circles.event_users VALUES (6, 2);
  INSERT INTO circles.event_users VALUES (6, 3);
@@ -117,13 +93,11 @@ COMMENT ON COLUMN circles.events.note IS 'optional note for an event';
  INSERT INTO circles.event_users VALUES (6, 5);
  INSERT INTO circles.event_users VALUES (6, 6);
  INSERT INTO circles.event_users VALUES (6, 7);
- INSERT INTO circles.event_users VALUES (6, 8);
- INSERT INTO circles.event_users VALUES (6, 9);
  INSERT INTO circles.event_users VALUES (7, 1);
  INSERT INTO circles.event_users VALUES (7, 3);
  INSERT INTO circles.event_users VALUES (7, 5);
  INSERT INTO circles.event_users VALUES (7, 7);
- INSERT INTO circles.event_users VALUES (7, 9);
+ INSERT INTO circles.event_users VALUES (7, 8);
  INSERT INTO circles.event_users VALUES (8, 1);
  INSERT INTO circles.event_users VALUES (8, 2);
  INSERT INTO circles.event_users VALUES (8, 3);
