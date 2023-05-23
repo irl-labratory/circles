@@ -54,17 +54,30 @@ COMMENT ON COLUMN circles.events.daypart IS 'can be morning, afternoon, evening,
 
 COMMENT ON COLUMN circles.events.note IS 'optional note for an event';
 
-  INSERT INTO circles.circles VALUES (1, 'Climb time!');
+INSERT INTO circles.circles VALUES (1, 'Climb time!');
  INSERT INTO circles.circles VALUES (2, 'Hack Hour');
 
- INSERT INTO circles.users VALUES (1, 'jnoor', 'Jasmine', 'user1@gmail.com');
- INSERT INTO circles.users VALUES (2, 'jdonato', 'John', 'user2@gmail.com');
- INSERT INTO circles.users VALUES (3, 'wmurphy', 'Billy', 'user3@gmail.com');
- INSERT INTO circles.users VALUES (4, 'nly', 'Nicky', 'user4@gmail.com');
- INSERT INTO circles.users VALUES (5, 'batman', 'Kelvin', 'user5@gmail.com');
- INSERT INTO circles.users VALUES (6, 'cashley', 'Christian', 'user6@gmail.com');
- INSERT INTO circles.users VALUES (7, 'ma', 'Michael Angelo', 'user7@gmail.com');
- INSERT INTO circles.users VALUES (8, 'nz', 'Ngoc', 'user8@gmail.com');
+ INSERT INTO circles.users VALUES (1, 'jnoor', 'Jasmine', 'jnoor@test.com');
+ INSERT INTO circles.users VALUES (2, 'jdonato', 'John', 'jdonato@test.com');
+ INSERT INTO circles.users VALUES (3, 'wmurphy', 'Billy', 'wmurphy@test.com');
+ INSERT INTO circles.users VALUES (4, 'nly', 'Nicky', 'nly@test.com');
+ INSERT INTO circles.users VALUES (5, 'batman', 'Kelvin', 'batman@test.com');
+ INSERT INTO circles.users VALUES (6, 'cashley', 'Christian', 'cashley@test.com');
+ INSERT INTO circles.users VALUES (7, 'ma', 'Michael Angelo', 'ma@test.com');
+ INSERT INTO circles.users VALUES (8, 'nz', 'Ngoc', 'nz@test.com');
+
+ INSERT INTO circles.circle_users VALUES (1,1);
+ INSERT INTO circles.circle_users VALUES (2,1);
+ INSERT INTO circles.circle_users VALUES (3,1);
+ INSERT INTO circles.circle_users VALUES (4,1);
+ INSERT INTO circles.circle_users VALUES (1,2);
+ INSERT INTO circles.circle_users VALUES (2,2);
+ INSERT INTO circles.circle_users VALUES (3,2);
+ INSERT INTO circles.circle_users VALUES (4,2);
+ INSERT INTO circles.circle_users VALUES (5,2);
+ INSERT INTO circles.circle_users VALUES (6,2);
+ INSERT INTO circles.circle_users VALUES (7,2);
+ INSERT INTO circles.circle_users VALUES (8,2);
 
  INSERT INTO circles.events VALUES (1, 1, '2023-05-27', 'evening', '');
  INSERT INTO circles.events VALUES (2, 1, '2023-05-29', 'morning', 'lead climbing');
