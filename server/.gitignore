@@ -3,3 +3,4 @@ package-lock.json
 yarn.lockx
 
 dist
+.env

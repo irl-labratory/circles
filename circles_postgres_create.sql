@@ -20,11 +20,13 @@ ALTER TABLE circles.events ADD CONSTRAINT daypart CHECK ( daypart IN ('morning',
 
 CREATE  TABLE circles.users ( 
 	id                   integer  NOT NULL  ,
-	username             varchar(100)  NOT NULL  ,
 	name                 varchar(100)    ,
 	email                varchar  NOT NULL  ,
+	access_token         varchar    ,
+	access_token_expiry  varchar    ,
 	CONSTRAINT pk_users PRIMARY KEY ( id )
  );
+
 
 CREATE  TABLE circles.circle_users ( 
 	user_id              integer    ,
@@ -57,14 +59,14 @@ COMMENT ON COLUMN circles.events.note IS 'optional note for an event';
 INSERT INTO circles.circles VALUES (1, 'Climb time!');
  INSERT INTO circles.circles VALUES (2, 'Hack Hour');
 
- INSERT INTO circles.users VALUES (1, 'jnoor', 'Jasmine', 'jnoor@test.com');
- INSERT INTO circles.users VALUES (2, 'jdonato', 'John', 'jdonato@test.com');
- INSERT INTO circles.users VALUES (3, 'wmurphy', 'Billy', 'wmurphy@test.com');
- INSERT INTO circles.users VALUES (4, 'nly', 'Nicky', 'nly@test.com');
- INSERT INTO circles.users VALUES (5, 'batman', 'Kelvin', 'batman@test.com');
- INSERT INTO circles.users VALUES (6, 'cashley', 'Christian', 'cashley@test.com');
- INSERT INTO circles.users VALUES (7, 'ma', 'Michael Angelo', 'ma@test.com');
- INSERT INTO circles.users VALUES (8, 'nz', 'Ngoc', 'nz@test.com');
+ INSERT INTO circles.users VALUES (1,  'Jasmine', 'jnoor@test.com');
+ INSERT INTO circles.users VALUES (2,  'John', 'jdonato@test.com');
+ INSERT INTO circles.users VALUES (3,  'Billy', 'wmurphy@test.com');
+ INSERT INTO circles.users VALUES (4,  'Nicky', 'nly@test.com');
+ INSERT INTO circles.users VALUES (5,  'Kelvin', 'batman@test.com');
+ INSERT INTO circles.users VALUES (6,  'Christian', 'cashley@test.com');
+ INSERT INTO circles.users VALUES (7,  'Michael Angelo', 'ma@test.com');
+ INSERT INTO circles.users VALUES (8,  'Ngoc', 'nz@test.com');
 
  INSERT INTO circles.circle_users VALUES (1,1);
  INSERT INTO circles.circle_users VALUES (2,1);
