@@ -1,7 +1,7 @@
 {
-  "name": "AllPaca",
+  "name": "circles",
   "version": "1.0.0",
-  "description": "An app to help your friends pack for any and every trip",
+  "description": "See your friends more",
   "main": "server.js",
   "scripts": {
     "start": " node ."
@@ -11,8 +11,10 @@
   "dependencies": {
     "bcryptjs": "^2.3.0",
     "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.3"
+    "mongoose": "^7.0.3",
+    "pg": "^8.11.0"
   }
 }
