@@ -10,7 +10,7 @@ const newTripPage = () => {
     const [location, setLocation] = useState('');
     // const [tripType, setTripType] = useState('');
     const [tripName, setTripName] = useState('');
-		const { currentTrip, setCurrentTrip } = useContext(tripContext);
+		// const { currentTrip, setCurrentTrip } = useContext(tripContext);
     const navigate = useNavigate();
 		const { user, setUser } = useContext(userContext);
 		const { _id, circles, username } = user;

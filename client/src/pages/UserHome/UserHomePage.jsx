@@ -50,7 +50,7 @@ const UserHomePage = () => {
                 </div>
                 <div className='cirlces'>
                     <h2>Circle</h2>
-                    <UserCircleDisplay userObj={ userData } />
+                    {/* <UserCircleDisplay userObj={ userData } /> */}
                 </div>
             </div>
         </div>
