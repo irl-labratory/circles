@@ -38,7 +38,7 @@ export const obj = {
             attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
         },
         WednesdayTopOut: {
-            date: '2023-06-2T05:00:00.000Z',
+            date: '2023-06-02T05:00:00.000Z',
             TOD: 'evening',
             attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
         },

@@ -21,9 +21,8 @@ const UserHomePage = () => {
     // setMainObj(mainObjData)
     const [date, setDate] = useState(new Date());
 		
-    /////////////////////////////////////////////////////////
+    //////////// User settings page navigation /////////////////
 
-    // User settings page navigation
     const navigate = useNavigate();
 
     const handleSettings = (e) => {
@@ -33,7 +32,17 @@ const UserHomePage = () => {
 
     /////////////////////////////////////////////////////////
 
-    // const date = Date.now()
+    const getEventsForDate = (date) => {
+        const eventsForDate = [];
+        
+        Object.values(mainObjData.events).forEach((event) => {
+          if (new Date(event.date).toDateString() === date.toDateString()) {
+            eventsForDate.push(event);
+          }
+        });
+      
+        return eventsForDate;
+      };
 
     // When you clink on this date div
     const onChange = (date) => {
@@ -41,11 +50,11 @@ const UserHomePage = () => {
         console.log(JSON.stringify(date)) // -> Mon May 22 2023 00:00:00 GMT-0500 (CDT)
         console.log(typeof date)
       };
-    
+
       const tileContent = ({ date, view }) => {
         if (view === 'month') {
-          const now = new Date();
-          // check if the tile date is today
+          const now = new Date()
+          const events = getEventsForDate(date);
           if (
             date.getYear() === now.getYear() &&
             date.getMonth() === now.getMonth() &&
@@ -55,10 +64,36 @@ const UserHomePage = () => {
             const height = (now.getHours() / 24) * 100;
             return <div style={{ height: `${height}%`, backgroundColor: 'blue' }} />;
           }
+          
+          if (events.length > 0) {
+            return (
+              <div>
+                {events.map((event, i) => (
+                  <p key={i}>{event.name}</p> // You need to have a name property in your events
+                ))}
+              </div>
+            );
+          }
         }
-        
-        return null;
       };
+    
+    //   const tileContent = ({ date, view }) => {
+        // if (view === 'month') {
+        //   const now = new Date();
+        //   // check if the tile date is today
+        //   if (
+        //     date.getYear() === now.getYear() &&
+        //     date.getMonth() === now.getMonth() &&
+        //     date.getDate() === now.getDate()
+        //   ) {
+        //     // calculate the height (or any other property) based on the current time
+        //     const height = (now.getHours() / 24) * 100;
+        //     return <div style={{ height: `${height}%`, backgroundColor: 'blue' }} />;
+        //   }
+        // }
+        
+        // return null;
+    //   };
 
     return (
         <div className="user-home-page">
