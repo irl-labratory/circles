@@ -38,7 +38,7 @@ const UserHomePage = () => {
     // When you clink on this date div
     const onChange = (date) => {
         setDate(date);
-        console.log(date) // -> Mon May 22 2023 00:00:00 GMT-0500 (CDT)
+        console.log(JSON.stringify(date)) // -> Mon May 22 2023 00:00:00 GMT-0500 (CDT)
         console.log(typeof date)
       };
     

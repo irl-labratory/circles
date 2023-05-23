@@ -23,32 +23,32 @@ export const obj = {
     },
     events: {
         theRainBowKittyParty: {
-            date: 'format TBD',
+            date: '2023-05-17T05:00:00.000Z',
             TOD: 'evening',
             attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
         },
         saturddayNightLead: {
-            date: 'format TBD',
+            date: '2023-05-14T05:00:00.000Z',
             TOD: 'evening',
             attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
         },
         tuesdayCrushing: {
-            date: 'format TBD',
+            date: '2023-05-23T05:00:00.000Z',
             TOD: 'evening',
             attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
         },
         WednesdayTopOut: {
-            date: 'format TBD',
+            date: '2023-06-2T05:00:00.000Z',
             TOD: 'evening',
             attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
         },
         weedingWednesday: {
-            date: 'format TBD',
+            date: '2023-05-21T05:00:00.000Z',
             TOD: 'evening',
             attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
         },
         sundayWorkship: {
-            date: 'format TBD',
+            date: '2023-05-18T05:00:00.000Z',
             TOD: 'evening',
             attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
         }
