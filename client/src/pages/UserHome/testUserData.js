@@ -2,13 +2,13 @@ export const obj = {
     user: {
         username: 'NickeIsAwesome',
         password: 'pass123',
-        circles: ['rainbowKittyParty', 'PrimeClimbTime', 'Play in a Garden']
+        circles: ['rainbowKittyParty', 'primeClimbTime', 'playInAGarden']
     },
     circles: {
         rainbowKittyParty: {
-            name: 'rainbowKittyParty',
+            name: 'Rainbow Kitty Party',
             memebers: ['Nicky', 'Jasmine', 'John', 'Billy'],
-            events: ['The RainBow Kitty Pary']
+            events: ['The Rainbow Kitty Party']
         },
         primeClimbTime: {
             name: 'Prime Climb Time',
@@ -22,7 +22,7 @@ export const obj = {
         }
     },
     events: {
-        theRainBowKittyParty: {
+        theRainbowKittyParty: {
             date: '2023-05-17T05:00:00.000Z',
             TOD: 'evening',
             attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
@@ -37,7 +37,7 @@ export const obj = {
             TOD: 'evening',
             attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
         },
-        WednesdayTopOut: {
+        wednesdayTopOut: {
             date: '2023-06-02T05:00:00.000Z',
             TOD: 'evening',
             attending: [['Nicky', 'Jasmine', 'John', 'Billy']]

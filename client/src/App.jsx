@@ -8,7 +8,6 @@ import './styles/index.scss';
 // Pages to render
 import LoginPage from './pages/LoginPage.jsx';
 import SignUpPage from './pages/SignUpPage.jsx';
-import NewTripPage from './pages/NewTripPage.jsx';
 import UserHomePage from './pages/UserHome/UserHomePage.jsx';
 import UserSettingsPage from './pages/UserHome/UserSettingsPage.jsx';
 import RootLayout from './layouts/rootLayout';

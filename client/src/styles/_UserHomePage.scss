@@ -94,3 +94,37 @@ $primary-font-color: rgb(78, 76, 76);
 	height: 50%;
 	padding: auto;
 }
+
+/// Calendar Pop-up Styles
+
+.highlighted {
+	background-color: #FFD700; /* Customize the circle color */
+  }
+  
+  .popup {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	padding: 20px;
+	border: 1px solid #ccc;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .popup h2 {
+	margin-top: 0;
+  }
+  
+  .popup ul {
+	list-style-type: none;
+	padding: 0;
+  }
+  
+  .popup li {
+	margin-bottom: 10px;
+  }
+  
+  .popup button {
+	margin-top: 10px;
+  }
