@@ -1,23 +1,34 @@
 import { useNavigate, useParams, json, defer } from 'react-router-dom';
+import { obj } from './pages/UserHome/testUserData';
+
 
 export const userLoader = async ({ params }) => {
     const { id } = params
     try {
-        const res = await fetch('/api/user/' + id);
-        const user = await res.json()
-        // console.log('loader:', user)
-        return user
+
+        return obj.user
     } catch (err) {
-        return {username: 'Bilbo Baggins', circle: [{date: Date.now(), tripName: 'There and Back again'}, {date: Date.now(), tripName: 'The Lord of the Rings'}]}
+        return new Error('Failed To fetch User Data')
     }
 }
 
-export const tripLoader = async ({ params }) => {
+export const circleLoader = async ({ params }) => {
     const { trip_id } = params
     try {
-        const res = await fetch('/api/trip/' + trip_id);
-        const trip = await res.json()
-       return trip;
+        // const res = await fetch('/api/trip/' + trip_id);
+        // const trip = await res.json()
+       return obj.events
+    } catch (err) {
+        return null
+    }
+}
+
+export const mainLoader = async ({ params }) => {
+    const { trip_id } = params
+    try {
+        // const res = await fetch('/api/trip/' + trip_id);
+        // const trip = await res.json()
+       return obj;
     } catch (err) {
         return null
     }

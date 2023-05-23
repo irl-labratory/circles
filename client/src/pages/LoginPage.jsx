@@ -1,6 +1,6 @@
 import { useNavigate, Form } from 'react-router-dom';
 import { useState } from 'react';
-import alpaca from '../assets/alpaca_cool.jpg';
+
 
 const LoginPage = () => {
 
@@ -9,7 +9,6 @@ const LoginPage = () => {
   // const { user, setUser } = useContext(userContext)
  	const navigate = useNavigate();
 
-  
 	////////////////////////////////////////////
 	async function handleSubmit(e) {
 	// make the fetch to the backend to authenticate the credentials
@@ -40,8 +39,8 @@ const LoginPage = () => {
   
         // console.log(user)
         console.log('res.user: ', res.user)
-        // return redirect(`/UserHomePage/${res.user_id}`); //!!! either user_id or username
-        return navigate(`/${res.user._id}`);
+    
+        return navigate(`/${res.user._id}`); //TODO
       } else {
         console.log(res.verified)
         alert('Invalid Credentials');
@@ -66,11 +65,7 @@ const LoginPage = () => {
 	return (
 		<main className='login-page'>
 			<div className='login-div'>
-        <img
-          src={alpaca}
-          alt={'alpaca'}
-          className="alpaca-image"
-        />
+
         <p id='name-label' className='username-subhead'>
           Welcome
         </p>

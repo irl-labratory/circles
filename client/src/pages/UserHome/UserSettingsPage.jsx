@@ -10,7 +10,7 @@ const UserSettingsPage = () => {
 
     const [newUserName, setNewUsername] = useState(user.username);
     const [newPassword, setNewPassword] = useState(user.password);
-    const [newCircleArr, setNewCircleArr] = useState(user.cirlces)
+    const [newCirclesArr, setNewCirclesArr] = useState([])
     
     const navigate = useNavigate()
 
@@ -28,7 +28,7 @@ const UserSettingsPage = () => {
             // filter the array to remove the element that was clicked on
             const updatedCircles = newCirclesArr.filter(trip => trip.name !== e.target.value)
             // update the circle array state
-            setNewCircleArr([...updatedCircles])
+            setNewCirclesArr([...updatedCircles])
             // update the user state with the new information
             setUser({...user, circles: [...updatedCircles]})
         } else {
