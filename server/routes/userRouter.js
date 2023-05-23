@@ -17,7 +17,7 @@ userRouter.post('/signup',
 //verify login info
 userRouter.post('/login',
     userController.verifyUser,
-		cookieController.setSSIDCookie, //Set JWT token when a new user signs up
+		// cookieController.setSSIDCookie, //Set JWT token when a new user signs up
 
     (req, res) => {
     console.log('--Sending data from userRouter.GET\'s aynonmouns func--');
