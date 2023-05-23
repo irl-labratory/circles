@@ -16,6 +16,24 @@ const createErr = (errInfo) => {
 
 const userController = {};
 
+userController.createUser = (req, res, next) => {
+
+}
+
+userController.verifyUser = (req,res,next) => {
+  // req.body will contain information about the username and password 
+  // obj deconstruct the username and password, check with jasmine about the password
+  // check to see if the username and password match what's in the database
+  // do this by querying the database for username and check if the password exists
+  // if it exists send a message through res.locals to say verified user
+
+}
+
+userController.getData = (req,res,next) => {
+  //
+
+}
+
 
 // Export the Controller
 module.exports = userController; 
