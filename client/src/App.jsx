@@ -7,7 +7,7 @@ import './styles/index.scss';
 
 // Pages to render
 import LoginPage from './pages/LoginPage.jsx';
-import SignUpPage from './pages/SignUpPage.jsx';
+import LoadingPage from './pages/LoadingPage.jsx';
 import UserHomePage from './pages/UserHome/UserHomePage.jsx';
 import UserSettingsPage from './pages/UserHome/UserSettingsPage.jsx';
 import RootLayout from './layouts/rootLayout';
@@ -21,8 +21,8 @@ const router = createBrowserRouter(
     <Route path='/' element={<RootLayout />}>
       <Route index element={<LoginPage key='login'/>} />
       <Route
-        path='/signup'
-        element={<SignUpPage key='signup' />}
+        path='/loading'
+        element={<LoadingPage key='loading' />}
       />
       <Route
         path=':id'
