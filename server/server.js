@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const userRouter = require('./routes/userRouter');
 const eventRouter = require('./routes/eventRouter');
 const groupRouter = require('./routes/groupRouter');
+const oAuthRouter = require('./routes/oAuthRouter');
 
 
 const PORT = 8080;
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true })); // important for forms!!
 app.use('/api/user', userRouter)
 app.use('/api/event', eventRouter)
 app.use('/api/group', groupRouter)
+app.use('/api/oauth', oAuthRouter)
 
 
 // catch-all route handler for any requests to an unknown route
