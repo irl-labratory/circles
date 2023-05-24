@@ -3,10 +3,8 @@ import { useNavigate, Form } from 'react-router-dom';
 import { userContext } from '../context';
 // import '../scss/SignUpPage.scss'
 
-const SignUpPage = () => {
+const LoginPage = () => {
 
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
 	const { user, setUser } = useContext(userContext);
 	const navigate = useNavigate()
 
@@ -43,32 +41,7 @@ const SignUpPage = () => {
 	return (
 		<main className='signup-page'>
 			<div className='signup-div'>
-			<Form className='form' onSubmit ={handleSubmit}>
-				<div className='username-box'>
-					<span>What will your username be?</span>
-					<input 
-						type='text'
-						placeholder='username'
-						value = {username}
-						onChange={(e) => setUsername(e.target.value)}
-					/>
-				</div>
-				<div className='password-box'>
-					<span>What will your password be?</span>
-					<input 
-						type='text'
-						placeholder="password" 
-						value = {password}     
-						onChange={(e) => setPassword(e.target.value)}
-						onKeyDown={(e) => {
-							if (e.key === 'Enter') handleSubmit();
-						}}
-					/>
-				</div>
-				<div className='signup-btn-div'>
-					<button id='signup-btn' type='submit'>Create Account</button>
-				</div>
-			</Form>
+				<h1>Loading</h1>
 			</div>
 		</main>
 	);
@@ -79,4 +52,4 @@ const SignUpPage = () => {
   // )
 };
 
-export default SignUpPage;
+export default LoginPage;
