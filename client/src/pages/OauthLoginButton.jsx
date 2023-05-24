@@ -6,7 +6,7 @@ const OauthLoginButton = () => {
         const rootUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
       
         const options = {
-          redirect_uri: 'http://localhost:8080/api/user',
+          redirect_uri: 'http://localhost:3000/loading',
           client_id: '1021401509525-0lggmm4a9ln7cqbmer2dqlctednoghcv.apps.googleusercontent.com',
           access_type: 'offline',
           response_type: 'code',
@@ -38,7 +38,7 @@ const OauthLoginButton = () => {
                 console.log('Login Failed');
             }}
             /> */}
-            <button onClick={GoogleLogin}>Login with Google</button>
+            <button onClick={GoogleLogin}>Continue with Google</button>
         </div>
     );
 };
