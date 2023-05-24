@@ -12,7 +12,7 @@ CREATE  TABLE circles.events (
 	event_date           date  NOT NULL  ,
 	daypart              varchar    ,
 	note                 varchar(600)    ,
-	event_name           varchar(100)    ,
+	event_name           varchar(300)    ,
 	CONSTRAINT pk_events PRIMARY KEY ( id )
  );
 

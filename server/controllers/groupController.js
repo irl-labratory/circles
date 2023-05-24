@@ -32,7 +32,11 @@ groupController.joinGroup = (req, res, next) => {
         .then((data) => {
             res.locals.user = data.rows;
             return next()
+        }).catch(e => {
+            console.log(e)
+            next(e)
         })
+
 
 }
 
@@ -53,6 +57,9 @@ groupController.leaveGroup = (req, res, next) => {
         .then((data) => {
             res.locals.user = data.rows;
             return next()
+        }).catch(e => {
+            console.log(e)
+            next(e)
         })
 
 }
@@ -62,8 +69,6 @@ groupController.leaveGroup = (req, res, next) => {
 groupController.newGroup = (req, res, next) => {
     // console.log(req.params)
     let { user_id, group_name } = req.body;
-
-
     const qString = `
 
     BEGIN;
@@ -76,6 +81,10 @@ groupController.newGroup = (req, res, next) => {
         .then((data) => {
             res.locals.user = data.rows;
             return next()
+        })
+        .catch(e => {
+            console.log(e)
+            next(e)
         })
 
 }

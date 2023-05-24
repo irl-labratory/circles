@@ -32,7 +32,11 @@ eventController.joinEvent = (req, res, next) => {
         .then((data) => {
             res.locals.user = data.rows;
             return next()
+        }).catch(e => {
+            console.log(e)
+            next(e)
         })
+
 
 }
 
@@ -61,7 +65,11 @@ eventController.leaveEvent = (req, res, next) => {
         .then((data) => {
             res.locals.user = data.rows;
             return next()
+        }).catch(e => {
+            console.log(e)
+            next(e)
         })
+
 
 }
 
@@ -86,7 +94,11 @@ eventController.newEvent = (req, res, next) => {
         .then((data) => {
             res.locals.user = data.rows;
             return next()
+        }).catch(e => {
+            console.log(e)
+            next(e)
         })
+
 
 }
 

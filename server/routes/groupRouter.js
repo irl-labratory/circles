@@ -34,7 +34,4 @@ groupRouter.post('/new', groupController.newGroup,
 
 
 
-
-
-
 module.exports = groupRouter; 
