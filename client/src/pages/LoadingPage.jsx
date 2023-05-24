@@ -1,6 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ClipLoader } from 'react-spinners';	
+import { CircleLoader } from 'react-spinners';
+
+
 
 const LoginPage = () => {
 
@@ -32,7 +34,7 @@ const LoginPage = () => {
 			console.log(res);
 			// This is the info that needs to be saved in useContext
 			setUser(res);
-
+			//TODO -> where is the user._id??
 			return navigate(`/${res.user._id}`);
 			//////////////////////////////////////////
 		})
@@ -47,18 +49,18 @@ const LoginPage = () => {
 
 
 	////////////////////////////////////////////
-
+	const containerStyle = {
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
+		height: '100vh',
+	  };
 
 	return (
-		<div className='signup-div'>
-			<ClipLoader
-				color={"#FF7F50"}
-				loading={true}
-				size={150}
-			/>
+		<div className="loading-spinner" style={containerStyle}>
+		  <CircleLoader color="#3498db"  size={500} />
 		</div>
-	);
-
+	  );
 };
 
 export default LoginPage;

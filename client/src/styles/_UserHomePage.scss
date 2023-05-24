@@ -18,10 +18,10 @@ $primary-font-color: rgb(78, 76, 76);
 	justify-content: center;
 	margin: 0.5rem auto;
     height: 100vh;
-    background-image: url('https://cdn-media-1.freecodecamp.org/images/1*kwaAOW_ja_raNVgV3VgZ2g.jpeg');
+    background-image: url('https://www.bluleadz.com/hubfs/circles-257002-edited.png');
 	background-position: center;
     background-repeat: no-repeat;
-    background-size: 70rem;
+    background-size: 90rem;
 
 	color: $primary-font-color;
 	font-family: $primary-font-stack;
@@ -36,7 +36,7 @@ $primary-font-color: rgb(78, 76, 76);
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(255, 255, 255, 0.759);
+	// background-color: rgba(255, 255, 255, 0.759);
 	border-radius: 2rem;
 	width: 80%;
 	height: 100%;
@@ -44,10 +44,11 @@ $primary-font-color: rgb(78, 76, 76);
 }
 
 .circle-column {
-	border-radius: 6rem;
+	border-radius: 2rem;
 	display: flex;
 	justify-content: left;
     flex-direction: column;
+	background-color: rgba(255, 255, 255, 0.759);
     align-items: left;
 	margin: 0 auto;
 	width: 20%;
@@ -112,27 +113,17 @@ $primary-font-color: rgb(78, 76, 76);
 .popup-overlay {
 	position: fixed;
 	z-index: 3;
-	// top: 20px; /* Change the top value to position the popup vertically */
-	// right: 20px; /* Change the right value to position the popup horizontally */
 	background-color: white;
 	padding: 2rem;
 	border: 0.01rem solid #ccc;
 	box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.135);
+	overflow: scroll;
+	max-width: 15rem;
+	max-height: 7rem;
+	border-radius: 1rem;
   }
   
 .popup-info {
 	margin-top: 0;
   }
   
-//   .popup ul {
-// 	list-style-type: none;
-// 	padding: 0;
-//   }
-  
-//   .popup li {
-// 	margin-bottom: 10px;
-//   }
-  
-//   .popup button {
-// 	margin-top: 10px;
-//   }

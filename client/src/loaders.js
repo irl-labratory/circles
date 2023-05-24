@@ -27,7 +27,7 @@ export const mainLoader = async ({ params }) => {
     const { trip_id } = params
     try {
         // const res = await fetch('/api/trip/' + trip_id);
-        // const trip = await res.json()
+        // const obj = await res.json()
        return obj;
     } catch (err) {
         return null

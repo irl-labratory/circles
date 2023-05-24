@@ -1,4 +1,5 @@
 import React from "react";
+import GoogleButton from 'react-google-button'
 
 const OauthLoginButton = () => {
     
@@ -28,17 +29,7 @@ const OauthLoginButton = () => {
 
     return (
         <div>
-            {/* <GoogleLogin 
-            onSuccess={res => {
-                console.log('Login Success: Google Response:', res);
-                const decoded = jwt_decode(res.credential);
-                console.log(decoded);
-            }}
-            onError={() => {
-                console.log('Login Failed');
-            }}
-            /> */}
-            <button onClick={GoogleLogin}>Continue with Google</button>
+          <GoogleButton onClick={GoogleLogin}/>
         </div>
     );
 };

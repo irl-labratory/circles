@@ -15,7 +15,8 @@
     "react-calendar": "^4.2.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
-    "react-spinners": "^0.13.8"
+    "react-spinners": "^0.13.8",
+    "react-google-button":"0.7.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

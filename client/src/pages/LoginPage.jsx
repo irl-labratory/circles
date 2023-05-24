@@ -68,7 +68,9 @@ const LoginPage = () => {
 			<div className='login-div'>
 
         <p id='name-label' className='username-subhead'>
-          Welcome
+          <p>Welcome</p>
+          <p>To </p>
+          <p>Circles</p>
         </p>
         <div className='form-div'>
           <OauthLoginButton />
