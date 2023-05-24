@@ -16,6 +16,38 @@ const createErr = (errInfo) => {
 const eventController = {};
 
 
+// had to make this just one action
+eventController.newEvent = (req, res, next) => {
+    // console.log(req.params)
+    let { user_id, circle_id, event_date, daypart, event_name, note } = req.body;
+    if (!note) { note = null }
+    if (!event_name) { event_name = null }
+    if (!daypart) { daypart = null }
+
+    const qString = `
+    
+	INSERT INTO circles.events (circle_id, event_date,daypart, event_name, note) 
+	VALUES(${circle_id}, '${event_date}','${daypart}', '${event_name}', '${note}')
+    `;
+    db.query(qString)
+        .then((data) => {
+            res.locals.user = data.rows;
+            return next()
+        }).catch(e => {
+            console.log(e)
+            next(e)
+        })
+
+    //     BEGIN;
+    // INSERT INTO circles.events(circle_id, event_date, daypart, note, event_name)
+    //     VALUES(3, '2023-06-11', 'n/a', 'plzzz', 'n/a');
+    // INSERT INTO circles.event_users(event_id, user_id)
+    //     VALUES(lastval(), 8);
+    //     COMMIT;
+
+}
+
+
 
 
 eventController.joinEvent = (req, res, next) => {
@@ -73,32 +105,6 @@ eventController.leaveEvent = (req, res, next) => {
 
 }
 
-
-// stuck on leaving an event DOES NOT WORK YET
-eventController.newEvent = (req, res, next) => {
-    // console.log(req.params)
-    let { user_id, circle_id, event_date, daypart, event_name, note } = req.body;
-    if (!note) { note = "" }
-    if (!event_name) { event_name = "" }
-    if (!daypart) { daypart = "" }
-
-    const qString = `
-    BEGIN;
-	INSERT INTO circles.events (circle_id, event_date,daypart, event_name, note)
-	VALUES(${circle_id}, ${event_date},${daypart}, ${event_name}, ${note});
-	INSERT INTO circles.event_users (event_id, user_id)
-	VALUES (lastval(), ${user_id});
-	COMMIT
-    `;
-    db.query(qString)
-        .then((data) => {
-            res.locals.user = data.rows;
-            return next()
-        }).catch(e => {
-            console.log(e)
-            next(e)
-        })
-}
 
 
 
