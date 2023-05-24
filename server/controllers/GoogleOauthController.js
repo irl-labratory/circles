@@ -72,4 +72,4 @@ GoogleOauthMiddleware.getUserInfo = async (req, res, next) => {
     };
 };
 
-export default GoogleOauthMiddleware;
+module.exports = GoogleOauthMiddleware;
