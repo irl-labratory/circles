@@ -25,32 +25,32 @@ export const obj = {
         theRainbowKittyParty: {
             date: '2023-05-17T05:00:00.000Z',
             TOD: 'evening',
-            attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
+            attending: ['Nicky', 'Jasmine', 'John', 'Billy']
         },
-        saturddayNightLead: {
+        saturdayNightLead: {
             date: '2023-05-14T05:00:00.000Z',
             TOD: 'evening',
-            attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
+            attending: ['Nicky', 'Jasmine', 'John', 'Billy']
         },
         tuesdayCrushing: {
             date: '2023-05-23T05:00:00.000Z',
             TOD: 'evening',
-            attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
+            attending: ['Nicky', 'Jasmine', 'John', 'Billy']
         },
         wednesdayTopOut: {
             date: '2023-06-02T05:00:00.000Z',
             TOD: 'evening',
-            attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
+            attending: ['Nicky', 'Jasmine', 'John', 'Billy']
         },
         weedingWednesday: {
             date: '2023-05-21T05:00:00.000Z',
             TOD: 'evening',
-            attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
+            attending: ['Nicky', 'Jasmine', 'John', 'Billy']
         },
         sundayWorkship: {
             date: '2023-05-18T05:00:00.000Z',
             TOD: 'evening',
-            attending: [['Nicky', 'Jasmine', 'John', 'Billy']]
+            attending: ['Nicky', 'Jasmine', 'John', 'Billy']
         }
     }
 }
