@@ -47,8 +47,19 @@ eventController.leaveEvent = (req, res, next) => {
     // console.log(user_id)
 
     const qString = `
+
+    BEGIN;
 	DELETE FROM circles.event_users
-	WHERE user_id = ${user_id} AND event_id = ${event_id}
+	WHERE user_id = ${user_id} AND event_id = ${event_id};
+	DELETE FROM circles.events 
+	where id in (
+	select b.id
+	from circles.event_users a
+	FULL OUTER JOIN circles.events b on a.event_id = b.id
+	where b.id in (${event_id}) 
+	group by 1
+	having count(a.event_id) = 0);
+	COMMIT;
     `;
     db.query(qString)
         .then((data) => {
@@ -59,22 +70,8 @@ eventController.leaveEvent = (req, res, next) => {
             next(e)
         })
 
-    // issues with intended behavior of having both the event removed and checking if we need to delete the event so going to just have it remove the event
-    // BEGIN;
-    // 	DELETE FROM circles.event_users
-    // 	WHERE user_id = ${ user_id } AND event_id = ${ event_id };
-    // 	DELETE FROM circles.events 
-    // 	where id in (
-    //     select b.id
-    // 	from circles.event_users a
-    // 	FULL OUTER JOIN circles.events b on a.event_id = b.id
-    // 	where b.id in (${ event_id }) 
-    // 	group by 1
-    // 	having count(a.event_id) = 0);
-    // COMMIT;
 
 }
-
 
 
 // stuck on leaving an event DOES NOT WORK YET
@@ -101,8 +98,6 @@ eventController.newEvent = (req, res, next) => {
             console.log(e)
             next(e)
         })
-
-
 }
 
 
