@@ -88,7 +88,6 @@ export const renderPopupEvent = (_event) => {
       <div className='popup-info' key={key}>
         <h2>{_event.circle}</h2>
           <ul>
-            <li>{_event.eventName}</li>
             <li>Going</li>
             {peopleArr}
           </ul>
