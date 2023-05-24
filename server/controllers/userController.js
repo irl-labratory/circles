@@ -52,37 +52,23 @@ res.locals.data = {
   events: {
     event1: {event info},
     event2: {event info}
-  }å
+  }
 }
 
 */
-<<<<<<< HEAD
 let counter = 0;
 userController.getUser = async (req,res,next) => {
   const {_id} = req.params;
 
-=======
-userController.getUser = (req, res, next) => {
-  const { _id } = req.params;
-  console.log('this is the id', _id)
->>>>>>> dev-be
   // create a string that will query the data
   const qString = `
-<<<<<<< HEAD
   select z.user_id, z.user_name, z.email, json_agg(json_build_object(
-=======
-    select z.user_id, z.user_name, z.email, json_agg(json_build_object(
->>>>>>> dev-be
     'circle_id', z.circle_id,
     'circle_name',z.circle_name,
     'events', z.event)) as groups
     from (select
     y.user_id as user_id, y.user_name, y.email, y.access_token,y.access_token_expiry,
-<<<<<<< HEAD
      y.circle_id, y.circle_name, json_agg(json_build_object (
-=======
-    y.circle_id, y.circle_name, json_agg(json_build_object (
->>>>>>> dev-be
     'id', y.event_id, 'event_info', y.event_info)) as event
     from
     (select x.user_id as user_id, x.name as user_name, x.email, x.access_token,x.access_token_expiry, x.circle_id, x.circle_name, x.event_id, json_build_object(
@@ -103,21 +89,7 @@ userController.getUser = (req, res, next) => {
     group by 1,2,3,4,5,6,7,8,9,10,11) as x) as y 
     group by 1,2,3,4,5,6,7) as z
     group by 1,2,3
-<<<<<<< HEAD
     ;`;
-=======
-    `;
-  db.query(qString)
-    .then((data) => {
-      console.log('this is our data, ', data)
-      res.locals.user = data.rows;
-      return next()
-    })
-  //req.params will contain information on the user's id
-  // may need multiple querys to get info from database
-  // query the database per the ID and use join tables
-  // throw into res.locals.data after manipulation
->>>>>>> dev-be
 
   const sendObj = await db.query(qString)
     .then((data)=> {
@@ -164,10 +136,7 @@ userController.getUser = (req, res, next) => {
           events: eventsArr
         }
       }
-      // console.log('user obj: \n', userObj);
-      // console.log('this is the circle obj: \n', circleObj);
-      // console.log('this is the events obj: \n', eventsObj);
-      // rows returns a an array with 1 object, this means we can pull  it from the first element of the array
+
       return {
         user: userObj,
         circle: circleObj,
@@ -205,16 +174,12 @@ userController.getUser = (req, res, next) => {
       // console.log('dictionary: ', dictionary)
       return dictionary
     })
-      
-  console.log('this is the sending obj: \n', sendObj)
-  console.log('circleMembers dictionary', circleMembers);
-
-  
 
   for (item in sendObj.circle){
 
     sendObj.circle[item].members = circleMembers[sendObj.circle[item].id];
   }
+  // delete this key because we don't need it anymore
   delete sendObj.circleArr;
   res.locals.user = sendObj;
   return next()
