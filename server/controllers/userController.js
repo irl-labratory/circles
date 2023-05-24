@@ -16,6 +16,7 @@ const createErr = (errInfo) => {
   };
 };
 
+
 const userController = {};
 
 // userController.createUser = (req, res, next) => {
@@ -55,11 +56,11 @@ res.locals.data = {
 }
 
 */
-userController.getUser = (req,res,next) => {
+let counter = 0;
+userController.getUser = async (req,res,next) => {
   const {_id} = req.params;
-  console.log('this is the id', _id)
-  // create a string that will query the data
 
+  // create a string that will query the data
   const qString = `
   select z.user_id, z.user_name, z.email, json_agg(json_build_object(
     'circle_id', z.circle_id,
@@ -89,49 +90,106 @@ userController.getUser = (req,res,next) => {
     group by 1,2,3,4,5,6,7) as z
     group by 1,2,3
     ;`;
-    db.query(qString)
+
+  const sendObj = await db.query(qString)
     .then((data)=> {
+      // lots of object and array deconstruction to get data easier
       const {rows} = data
       const [userData] = rows;
       const {user_id, user_name, groups} = userData
+
       // console.log('user data: \n', userData)
       const userObj = {
         username: user_name,
         circle: groups
       }
-      const circleObj = {
-      }
-      console.log('user obj, \n', userObj)
+      const circleObj = {};
+      const eventsObj = {};
+      const circleArr = [];
+
       for (circle of groups){
-        const {circle_name, events} = circle;
-        // console.log('circle_name: ', circle_name)
-        // const {event_info} = events;
-        // [event_name] = event_info;
+        const {circle_id, circle_name, events} = circle;
         const eventsArr =[]
+        circleArr.push(circle_id);
         for (ev of events) {
           const {event_info} = ev
-          eventsArr.push(event_info.event_name) 
+          let {event_date, event_name, daypart, note, attendees} = event_info
+          // for the circle objects events 
+          eventsArr.push(event_name) 
+          // for the events object
+          // if event name is blank, give it the name default +counter and increment the counter
+          if (event_name === ''){
+            event_name += 'default' + counter;
+            counter++;
+          }
+          eventsObj[event_name] = {
+            date: event_date,
+            time: daypart,
+            attendees: attendees
+          }
         }
+        // add each circle 
         circleObj[circle_name] = {
           name: circle_name,
+          id:circle_id,
           members:[`need to add thru sql`],
           events: eventsArr
         }
       }
-      console.log('this is the circle obj: \n', circleObj)
-
-
-
-
+      // console.log('user obj: \n', userObj);
+      // console.log('this is the circle obj: \n', circleObj);
+      // console.log('this is the events obj: \n', eventsObj);
       // rows returns a an array with 1 object, this means we can pull  it from the first element of the array
-      res.locals.user = rows;
-      return next()
+      return {
+        user: userObj,
+        circle: circleObj,
+        eventsObj:eventsObj,
+        circleArr: circleArr
+      }
     })
-  //req.params will contain information on the user's id
-  // may need multiple querys to get info from database
-  // query the database per the ID and use join tables
-  // throw into res.locals.data after manipulation
 
+  const {circleArr} = sendObj;
+  console.log('circle array: ', circleArr);
+  let circleQuery = ''
+  circleArr.forEach((circle_id) =>{
+    circleQuery += `${circle_id},`
+  })
+
+  circleQuery = circleQuery.substring(0,circleQuery.length-1);
+  const qStringGetCirclesMembers = `
+  select array_agg(json_build_object('group_id',x.circle_id, 'members',x.array_agg)) from
+  (select a.circle_id, array_agg(b.name)
+  from circles.circle_users a
+  left join circles.users b on b.id = a.user_id 
+  where circle_id in (${circleQuery})
+  GROUP BY 1) x;
+  ;`
+    
+  const circleMembers = await db.query(qStringGetCirclesMembers)
+    .then((data)=>{
+      const dictionary = {};
+      const {array_agg} = data.rows[0]
+      // console.log('these are the members', array_agg)
+
+      array_agg.forEach((obj)=>{
+        dictionary[obj.group_id] = obj.members
+      })
+      // console.log('dictionary: ', dictionary)
+      return dictionary
+    })
+      
+  console.log('this is the sending obj: \n', sendObj)
+  console.log('circleMembers dictionary', circleMembers);
+
+  
+
+  for (item in sendObj.circle){
+
+    sendObj.circle[item].members = circleMembers[sendObj.circle[item].id];
+  }
+  delete sendObj.circleArr;
+  res.locals.user = sendObj;
+  return next()
 }
 
 userController.deleteUser = (req, res, next) => {
