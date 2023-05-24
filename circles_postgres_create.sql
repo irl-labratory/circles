@@ -1,39 +1,43 @@
 CREATE SCHEMA IF NOT EXISTS circles;
 
 CREATE  TABLE circles.circles ( 
-	id                   integer  NOT NULL  ,
+	id                   serial  NOT NULL  ,
 	name                 varchar(100)  NOT NULL  ,
 	CONSTRAINT pk_circles PRIMARY KEY ( id )
  );
 
-
 CREATE  TABLE circles.events ( 
-	id                   integer  NOT NULL  ,
+	id                   serial  NOT NULL  ,
 	circle_id            integer  NOT NULL  ,
 	event_date           date  NOT NULL  ,
 	daypart              varchar    ,
 	note                 varchar(600)    ,
+	event_name           varchar(300)    ,
 	CONSTRAINT pk_events PRIMARY KEY ( id )
  );
 
 ALTER TABLE circles.events ADD CONSTRAINT daypart CHECK ( daypart IN ('morning', 'afternoon', 'evening') );
 
+CREATE UNIQUE INDEX unq_events_circle_id ON circles.events ( circle_id, event_date, daypart );
+
 CREATE  TABLE circles.users ( 
 	id                   integer  NOT NULL  ,
-	name                 varchar(100)    ,
+	name                 varchar(120)  NOT NULL  ,
 	email                varchar  NOT NULL  ,
 	access_token         varchar    ,
 	access_token_expiry  varchar    ,
-	CONSTRAINT pk_users PRIMARY KEY ( id )
+	CONSTRAINT pk_users PRIMARY KEY ( id ),
+	CONSTRAINT unq_users_email UNIQUE ( email ) 
  );
 
-
 CREATE  TABLE circles.circle_users ( 
-	user_id              integer    ,
-	circle_id            integer    
+	user_id              integer  NOT NULL  ,
+	circle_id            integer  NOT NULL  
  );
 
 CREATE UNIQUE INDEX unq_circle_users ON circles.circle_users ( user_id, circle_id );
+
+CREATE UNIQUE INDEX unq_circle_users_user_id ON circles.circle_users ( user_id, circle_id );
 
 CREATE  TABLE circles.event_users ( 
 	event_id             integer  NOT NULL  ,
@@ -52,12 +56,14 @@ ALTER TABLE circles.event_users ADD CONSTRAINT fk_event_users_events FOREIGN KEY
 
 ALTER TABLE circles.events ADD CONSTRAINT fk_events_circles FOREIGN KEY ( circle_id ) REFERENCES circles.circles( id );
 
+COMMENT ON COLUMN circles.events.event_date IS 'date of event';
+
 COMMENT ON COLUMN circles.events.daypart IS 'can be morning, afternoon, evening, or null';
 
 COMMENT ON COLUMN circles.events.note IS 'optional note for an event';
 
 INSERT INTO circles.circles VALUES (1, 'Climb time!');
- INSERT INTO circles.circles VALUES (2, 'Hack Hour');
+INSERT INTO circles.circles VALUES (2, 'Hack Hour');
 
  INSERT INTO circles.users VALUES (1,  'Jasmine', 'jnoor@test.com');
  INSERT INTO circles.users VALUES (2,  'John', 'jdonato@test.com');
@@ -81,15 +87,15 @@ INSERT INTO circles.circles VALUES (1, 'Climb time!');
  INSERT INTO circles.circle_users VALUES (7,2);
  INSERT INTO circles.circle_users VALUES (8,2);
 
- INSERT INTO circles.events VALUES (1, 1, '2023-05-27', 'evening', '');
- INSERT INTO circles.events VALUES (2, 1, '2023-05-29', 'morning', 'lead climbing');
- INSERT INTO circles.events VALUES (3, 1, '2023-05-30', 'evening', '');
- INSERT INTO circles.events VALUES (4, 1, '2023-06-02', 'evening', '');
- INSERT INTO circles.events VALUES (5, 1, '2023-06-05', 'afternoon', 'top rope');
- INSERT INTO circles.events VALUES (6, 2, '2023-05-28', 'evening', '');
- INSERT INTO circles.events VALUES (7, 2, '2023-05-29', 'morning', 'SDI');
- INSERT INTO circles.events VALUES (8, 2, '2023-06-03', 'morning', '');
- INSERT INTO circles.events VALUES (9, 2, '2023-06-04', 'evening', '');
+ INSERT INTO circles.events VALUES (1, 1, '2023-05-27', 'evening', '', '');
+ INSERT INTO circles.events VALUES (2, 1, '2023-05-29', 'morning', '', 'lead climbing');
+ INSERT INTO circles.events VALUES (3, 1, '2023-05-30', 'evening', '', '');
+ INSERT INTO circles.events VALUES (4, 1, '2023-06-02', 'evening', '', '');
+ INSERT INTO circles.events VALUES (5, 1, '2023-06-05', 'afternoon', '', 'top rope');
+ INSERT INTO circles.events VALUES (6, 2, '2023-05-28', 'evening', 'Hack Night', '');
+ INSERT INTO circles.events VALUES (7, 2, '2023-05-29', 'morning', '', 'SDI');
+ INSERT INTO circles.events VALUES (8, 2, '2023-06-03', 'morning', '', '');
+ INSERT INTO circles.events VALUES (9, 2, '2023-06-04', 'evening', 'Hack Night', '');
 
  INSERT INTO circles.event_users VALUES (1, 1);
  INSERT INTO circles.event_users VALUES (1, 2);

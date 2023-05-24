@@ -5,12 +5,12 @@ const jwt = require('jsonwebtoken');
 const db = require('../queries')
 
 
-const secretKey='This-is-a-secret-key';
+const secretKey = 'This-is-a-secret-key';
 
 
 const createErr = (errInfo) => {
   const { method, type, err } = errInfo;
-  return { 
+  return {
     log: `userController.${method} ${type}: ERROR: ${typeof err === 'object' ? JSON.stringify(err) : err}`,
     message: { err: `Error occurred in userController.${method}. Check server logs for more details.` }
   };
@@ -25,7 +25,7 @@ const userController = {};
 
 // }
 
-userController.verifyUser = (req,res,next) => {
+userController.verifyUser = (req, res, next) => {
   // req.body will contain information about the username, id, access id?
   // obj deconstruct the body
   // check to see if the informations matches what's in the database
@@ -56,19 +56,33 @@ res.locals.data = {
 }
 
 */
+<<<<<<< HEAD
 let counter = 0;
 userController.getUser = async (req,res,next) => {
   const {_id} = req.params;
 
+=======
+userController.getUser = (req, res, next) => {
+  const { _id } = req.params;
+  console.log('this is the id', _id)
+>>>>>>> dev-be
   // create a string that will query the data
   const qString = `
+<<<<<<< HEAD
   select z.user_id, z.user_name, z.email, json_agg(json_build_object(
+=======
+    select z.user_id, z.user_name, z.email, json_agg(json_build_object(
+>>>>>>> dev-be
     'circle_id', z.circle_id,
     'circle_name',z.circle_name,
     'events', z.event)) as groups
     from (select
     y.user_id as user_id, y.user_name, y.email, y.access_token,y.access_token_expiry,
+<<<<<<< HEAD
      y.circle_id, y.circle_name, json_agg(json_build_object (
+=======
+    y.circle_id, y.circle_name, json_agg(json_build_object (
+>>>>>>> dev-be
     'id', y.event_id, 'event_info', y.event_info)) as event
     from
     (select x.user_id as user_id, x.name as user_name, x.email, x.access_token,x.access_token_expiry, x.circle_id, x.circle_name, x.event_id, json_build_object(
@@ -89,7 +103,21 @@ userController.getUser = async (req,res,next) => {
     group by 1,2,3,4,5,6,7,8,9,10,11) as x) as y 
     group by 1,2,3,4,5,6,7) as z
     group by 1,2,3
+<<<<<<< HEAD
     ;`;
+=======
+    `;
+  db.query(qString)
+    .then((data) => {
+      console.log('this is our data, ', data)
+      res.locals.user = data.rows;
+      return next()
+    })
+  //req.params will contain information on the user's id
+  // may need multiple querys to get info from database
+  // query the database per the ID and use join tables
+  // throw into res.locals.data after manipulation
+>>>>>>> dev-be
 
   const sendObj = await db.query(qString)
     .then((data)=> {
