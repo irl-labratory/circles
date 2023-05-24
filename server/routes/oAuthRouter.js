@@ -8,3 +8,5 @@ oAuthRouter.post('/', GoogleOauthMiddleware.getGoogleAccesToken, GoogleOauthMidd
     console.log('We have entered the Oauth route handler!');
     res.status(200).send(res.locals.userInfo);
   });
+
+  module.exports = oAuthRouter;
