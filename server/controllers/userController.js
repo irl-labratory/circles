@@ -5,12 +5,12 @@ const jwt = require('jsonwebtoken');
 const db = require('../queries')
 
 
-const secretKey='This-is-a-secret-key';
+const secretKey = 'This-is-a-secret-key';
 
 
 const createErr = (errInfo) => {
   const { method, type, err } = errInfo;
-  return { 
+  return {
     log: `userController.${method} ${type}: ERROR: ${typeof err === 'object' ? JSON.stringify(err) : err}`,
     message: { err: `Error occurred in userController.${method}. Check server logs for more details.` }
   };
@@ -24,7 +24,7 @@ const userController = {};
 
 // }
 
-userController.verifyUser = (req,res,next) => {
+userController.verifyUser = (req, res, next) => {
   // req.body will contain information about the username, id, access id?
   // obj deconstruct the body
   // check to see if the informations matches what's in the database
@@ -55,20 +55,43 @@ res.locals.data = {
 }
 
 */
-userController.getUser = (req,res,next) => {
-  const {_id} = req.params;
+userController.getUser = (req, res, next) => {
+  const { _id } = req.params;
   console.log('this is the id', _id)
   // create a string that will query the data
 
   const qString = `
-    select * 
+    select z.user_id, z.user_name, z.email, json_agg(json_build_object(
+    'circle_id', z.circle_id,
+    'circle_name',z.circle_name,
+    'events', z.event)) as groups
+    from (select
+    y.user_id as user_id, y.user_name, y.email, y.access_token,y.access_token_expiry,
+    y.circle_id, y.circle_name, json_agg(json_build_object (
+    'id', y.event_id, 'event_info', y.event_info)) as event
+    from
+    (select x.user_id as user_id, x.name as user_name, x.email, x.access_token,x.access_token_expiry, x.circle_id, x.circle_name, x.event_id, json_build_object(
+    'event_date', x.event_date,
+    'event_name', x.event_name,
+    'daypart', x.daypart,
+    'note', x.note,
+    'attendees', x.attendees) as event_info
+    from ( select a.id as user_id, a.name, a.email, a.access_token, a.access_token_expiry, c.id as circle_id, c.name as circle_name, d.id as event_id, d.event_name as event_name, d.event_date as event_date, d.daypart as daypart, d.note as note, array_agg(f.name) as "attendees"
     from circles.users a
-    where a.id = 1 
-    limit 4;
+    left join circles.circle_users b on a.id = b.user_id
+    left join circles.circles c on c.id = b.circle_id
+    left join circles.events d on d.circle_id = c.id
+    left join circles.event_users e on e.event_id = d.id
+    left join circles.users f on f.id = e.user_id
+    where a.id = ${_id} 
+    and d.event_date >= CURRENT_DATE
+    group by 1,2,3,4,5,6,7,8,9,10,11) as x) as y 
+    group by 1,2,3,4,5,6,7) as z
+    group by 1,2,3
     `;
-    db.query(qString)
-    .then((data)=> {
-      console.log('this is our data, ',data)
+  db.query(qString)
+    .then((data) => {
+      console.log('this is our data, ', data)
       res.locals.user = data.rows;
       return next()
     })
