@@ -2,15 +2,16 @@ import React, { useContext, useState } from 'react';
 import { useNavigate, useLoaderData } from 'react-router-dom';
 // import { mainContext } from '../../context';
 import { generateEventColors, renderEvents, makeCircleColumn, svg } from './helperFunc';
+
+import Popup from './Popup';
 import Calendar from 'react-calendar';
 
 const UserHomePage = () => {
     // data from use loader data
     const mainObjData = useLoaderData();
-	// const { mainObj, setMainObj } = useContext(mainContext);
-    const user = mainObjData.user.username
     // setMainObj(mainObjData)
     const [date, setDate] = useState(new Date());
+    const [selectedEvent, setSelectedEvent] = useState(new Date());
 	
     //////////// User settings page navigation /////////////////
 
@@ -30,7 +31,16 @@ const UserHomePage = () => {
     // Handle click on a day tile
     const handleDayClick = (value) => {
         setSelectedDay(value);
-        setShowPopup(true);
+        const popUpState = showPopup == true ?  false :  true;
+        setShowPopup(popUpState);
+
+        // Find the corresponding event based on the selected date
+        const foundEvent = events.find((eventObj) => {
+            const eventDate = new Date(eventObj.date);
+            return eventDate.getTime() === value.getTime();
+            });
+
+        setSelectedEvent(foundEvent);
     };
 
     // When you clink on this date div
@@ -43,9 +53,6 @@ const UserHomePage = () => {
     const events = renderEvents(mainObjData)
     const circleColumn = makeCircleColumn(circleColors)
 
-    console.log(circleColors)
-
-
     const tileContent = ({ date, view }) => {
         const formattedDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0); // Set time component to 0
 
@@ -55,21 +62,22 @@ const UserHomePage = () => {
             return eventDate.getTime() === formattedDate.getTime(); // Compare date objects
           });
           
-          let i = 0
           if (foundEvent) {
      
             const circleColor = circleColors[foundEvent.circle];
 
             return (
-              <div id={`event-dot-${i++}`} className={`event-tile ${circleColor}`} style={{ backgroundColor: `${circleColor}` }}>
+              <div id={`event-dot-${date}`}
+                   className={`event-tile ${circleColor}`} 
+                   style={{ backgroundColor: `${circleColor}` }}
+              >
                 {foundEvent.going.length}
-                <div className="event-dot" id={`event-dot-${i++}`} style={{ backgroundColor: `${circleColor}` }} />
               </div>
             );
           }
         }
 
-        return null;
+        return (<div id={`event-dot-${date}`}></div>);
       };
      
     
@@ -89,10 +97,12 @@ const UserHomePage = () => {
                                 />
                 {showPopup && (
                 <Popup
-                    date={selectedDate}
-                    onClose={() => setShowPopup(false)}
+                    date={date}
+                    onClose={showPopup}
+                    setShowPopup={setShowPopup}
+                    event={selectedEvent}
                 />
-            )}
+                )}
             </div>
         </div>
     )
