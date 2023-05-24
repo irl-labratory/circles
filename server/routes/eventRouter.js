@@ -4,7 +4,7 @@ const eventController = require('../controllers/eventController')
 const eventRouter = express.Router();
 
 
-
+// adding event is not working
 // create a new event  // {"user_id":8,"circle_id":2, "event_date":"2023-06-01","daypart":"","event_name":"test","note":"" }
 eventRouter.post('/new', eventController.newEvent,
     (req, res) => {
@@ -22,7 +22,6 @@ eventRouter.post('/join', eventController.joinEvent,
 
 
 
-// stuck on leaving an event DOES NOT WORK YET
 // remove self from current event //  { "user_id": 1, "event_id": 12 }  
 
 eventRouter.post('/leave', eventController.leaveEvent,
