@@ -25,18 +25,16 @@ const LoginPage = () => {
 			body: JSON.stringify({code:code, state:state}),
 		})
 		.then((data) => {
-			if(data.status === 200) console.log(`OAuth : successfully sent authorization code back ${data.status}`);
-			else console.log(`OAUTH: error sending authorization code back ${data.status}`);
-			return data.json();
-		})
-		.then((res) => {
-			// checking the response from the server
-			console.log(res);
-			// This is the info that needs to be saved in useContext
-			setUser(res);
-			//TODO -> where is the user._id??
-			return navigate(`/${res.user._id}`);
-			//////////////////////////////////////////
+			console.log('data umm',data)
+			if(data.status === 200) {
+				console.log(`OAuth : successfully sent authorization code back ${data.status}`);
+				console.log(data)
+				return navigate('/test');
+			}
+			else {
+				console.log(`OAUTH: error sending authorization code back ${data.status}`);
+				return navigate('/');
+			}
 		})
 		.catch((err)=> {
 			console.log({

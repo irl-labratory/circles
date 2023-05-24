@@ -25,7 +25,7 @@ const router = createBrowserRouter(
         element={<LoadingPage key='loading' />}
       />
       <Route
-        path=':id'
+        path='/test'
         loader={mainLoader}
         element={<UserHomePage key='user' />}
       />
