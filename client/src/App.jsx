@@ -7,6 +7,7 @@ import './styles/index.scss';
 
 // Pages to render
 import LoginPage from './pages/LoginPage.jsx';
+import LoadingPage from './pages/LoadingPage.jsx';
 import UserHomePage from './pages/UserHome/UserHomePage.jsx';
 import UserSettingsPage from './pages/UserHome/UserSettingsPage.jsx';
 import RootLayout from './layouts/rootLayout';
@@ -19,6 +20,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<RootLayout />}>
       <Route index element={<LoginPage key='login'/>} />
+      <Route
+        path='/loading'
+        element={<LoadingPage key='loading' />}
+      />
       <Route
         path=':id'
         loader={mainLoader}
