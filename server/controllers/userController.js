@@ -61,17 +61,26 @@ userController.getUser = (req,res,next) => {
   // create a string that will query the data
 
   const qString = `
-      select a.id as user_id, a.name as user_name, c.id as circle_id, c.name as circle_name, d.id as event_id, d.event_date as event_date, d.daypart as daypart, d.note as note, STRING_AGG(f.name, ',') as "attendees"
-      from circles.users a
-      left join circles.circle_users b on a.id = b.user_id 
-      left join circles.circles c on c.id = b.circle_id
-      left join circles.events d on d.circle_id = c.id 
-      left join circles.event_users e on e.event_id = d.id
-      left join circles.users f on f.id = e.user_id
-      where a.id = 1 
-      and d.event_date >= CURRENT_DATE
-      group by 1,2,3,4,5,6,7,8
-      limit 1000
+    select y.circle_id, y.circle_name, json_agg(json_build_object (
+    'id', y.event_id, 'event_info', y.event_info)) as event
+    from
+    (select x.circle_id, x.circle_name, x.event_id, json_build_object(
+    'event_date', x.event_date,
+    'event_name', x.event_name, 
+    'daypart', x.daypart,
+    'note', x.note,
+    'attendees', x.attendees) as event_info
+    from (select c.id as circle_id, c.name as circle_name, d.id as event_id, d.event_name as event_name, d.event_date as event_date, d.daypart as daypart, d.note as note, array_agg(f.name) as "attendees"
+    from circles.users a
+    left join circles.circle_users b on a.id = b.user_id 
+    left join circles.circles c on c.id = b.circle_id
+    left join circles.events d on d.circle_id = c.id 
+    left join circles.event_users e on e.event_id = d.id
+    left join circles.users f on f.id = e.user_id
+    where a.id = 1 
+    and d.event_date >= CURRENT_DATE
+    group by 1,2,3,4,5,6) as x) as y 
+    group by 1,2
     ;
     `;
     db.query(qString)
