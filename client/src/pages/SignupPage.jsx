@@ -40,7 +40,6 @@ const SignUpPage = () => {
 	}
 	/////////////////////////////////////////////////
 
-
 	return (
 		<main className='signup-page'>
 			<div className='signup-div'>

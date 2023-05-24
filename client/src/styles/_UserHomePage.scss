@@ -33,15 +33,34 @@ $primary-font-color: rgb(78, 76, 76);
 
 .user-display {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
 	background-color: rgba(255, 255, 255, 0.759);
 	border-radius: 2rem;
-	width: 65%;
+	width: 80%;
 	height: 100%;
 	padding: 2rem 0;
 }
+
+.circle-column {
+	border-radius: 6rem;
+	display: flex;
+	justify-content: left;
+    flex-direction: column;
+    align-items: left;
+	margin: 0 auto;
+	width: 20%;
+	// height: 50%;
+	padding: auto;
+}
+
+.circle-col-tile {
+	border-radius: 6rem;
+	padding: 1rem;
+	margin: 1rem;
+}
+
 .settings {
 	position:static;
 	margin: 1rem 0 0 52rem;
@@ -84,16 +103,7 @@ $primary-font-color: rgb(78, 76, 76);
 	}
 }
 
-.past-circles {
-	border-radius: 6rem;
-	display: flex;
-    flex-direction: column;
-    align-items: center;
-	margin: 0 auto 15rem;
-	width: 50%;
-	height: 50%;
-	padding: auto;
-}
+
 
 /// Calendar Pop-up Styles
 
