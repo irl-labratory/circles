@@ -77,12 +77,13 @@ export const makeCircleColumn = (circleColors) => {
 
 export const renderPopupEvent = (_event) => {
 
-  const peopleArr = []
-  _event.going.forEach((person) => {
-    peopleArr.push(<p>{person}</p>)
-  })
+
   const key = Math.floor(Math.random()* 10000)
   if (_event != undefined) {
+    const peopleArr = []
+    _event.going.forEach((person) => {
+      peopleArr.push(<p>{person}</p>)
+    })
     return (
       <div className='popup-info' key={key}>
         <h2>{_event.circle}</h2>
