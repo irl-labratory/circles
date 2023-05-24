@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 // Routers
 const userRouter = require('./routes/userRouter');
 const eventRouter = require('./routes/eventRouter');
+const groupRouter = require('./routes/groupRouter');
 
 
 const PORT = 8080;
@@ -19,8 +20,9 @@ app.use(express.urlencoded({ extended: true })); // important for forms!!
 
 
 // define route handlers 
-// app.use('/api/user', userRouter)
+app.use('/api/user', userRouter)
 app.use('/api/event', eventRouter)
+app.use('/api/group', groupRouter)
 
 
 // catch-all route handler for any requests to an unknown route
