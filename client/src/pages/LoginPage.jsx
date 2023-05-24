@@ -1,65 +1,66 @@
 import { useNavigate, Form } from 'react-router-dom';
 import { useState } from 'react';
+import OauthLoginButton from './OauthLoginButton.jsx'
 
 
 const LoginPage = () => {
 
-	const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+	// const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
   // const { user, setUser } = useContext(userContext)
- 	const navigate = useNavigate();
+ 	// const navigate = useNavigate();
 
 	////////////////////////////////////////////
-	async function handleSubmit(e) {
-	// make the fetch to the backend to authenticate the credentials
-	try {
-      e.preventDefault();
-      // will this be a post request?
-		  const response = await fetch('/api/user/login', {
-			method: 'POST',
-			headers: {
-			'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ username, password })
-    });
+	// async function handleSubmit(e) {
+	// // make the fetch to the backend to authenticate the credentials
+	// try {
+  //     e.preventDefault();
+  //     // will this be a post request?
+	// 	  const response = await fetch('/api/user/login', {
+	// 		method: 'POST',
+	// 		headers: {
+	// 		'Content-Type': 'application/json'
+	// 		},
+	// 		body: JSON.stringify({ username, password })
+  //   });
 
-    console.log(response.status)
-    if(response.status === 200){
+  //   console.log(response.status)
+  //   if(response.status === 200){
 
-    const res = await response.json();
-    console.log(res.verified)
+  //   const res = await response.json();
+  //   console.log(res.verified)
     
-      if (res.verified) {
-        console.log('Authentication successful!');
+  //     if (res.verified) {
+  //       console.log('Authentication successful!');
             
-        // Send the username and password to the server for authentication 
-        // setUsername(''); // does this  match with the userSchema (the word User)
-        // setPassword('');
-        // setUser([...res.user]);
+  //       // Send the username and password to the server for authentication 
+  //       // setUsername(''); // does this  match with the userSchema (the word User)
+  //       // setPassword('');
+  //       // setUser([...res.user]);
   
-        // console.log(user)
-        console.log('res.user: ', res.user)
+  //       // console.log(user)
+  //       console.log('res.user: ', res.user)
     
-        return navigate(`/${res.user._id}`); //TODO
-      } else {
-        console.log(res.verified)
-        alert('Invalid Credentials');
-        return navigate('/')
-      }
-    } else {
-      alert('Server fail')
-    }
+  //       return navigate(`/${res.user._id}`); //TODO
+  //     } else {
+  //       console.log(res.verified)
+  //       alert('Invalid Credentials');
+  //       return navigate('/')
+  //     }
+  //   } else {
+  //     alert('Server fail')
+  //   }
     
-		} catch (error) {
-		console.error(error);
-		}
-	}
+	// 	} catch (error) {
+	// 	console.error(error);
+	// 	}
+	// }
 	/////////////////////////////////////////////////
 
     //do we need fetch for this as well?
-    const redirectToSignupPage = () => {
-	    return navigate(`/signup`);
-	}
+  //   const redirectToSignupPage = () => {
+	//     return navigate(`/signup`);
+	// }
 
 
 	return (
@@ -70,7 +71,8 @@ const LoginPage = () => {
           Welcome
         </p>
         <div className='form-div'>
-          <Form onSubmit ={handleSubmit}>
+          <OauthLoginButton />
+          {/* <Form onSubmit ={handleSubmit}>
             <div className='username-section'>
               <input 
                 type='text'
@@ -95,12 +97,11 @@ const LoginPage = () => {
               <div className='button-div'>
                 <button id='login-btn' type='submit'>Login</button>
               </div>
-              {/* redirect to sign up page with the this button */}
               <div className='button-div'>
                 <button id='signup-btn' onClick={redirectToSignupPage}>Sign Up</button>
               </div>
             </div>
-          </Form>
+          </Form> */}
         </div>
       </div>
 		</main>

@@ -1,12 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';	
-
-
-
-
 
 const LoginPage = () => {
 
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		console.log('i am in the useEffect')
@@ -34,7 +32,8 @@ const LoginPage = () => {
 			console.log(res);
 			// This is the info that needs to be saved in useContext
 			setUser(res);
-			// redirect to the user's home page here
+
+			return navigate(`/${res.user._id}`);
 			//////////////////////////////////////////
 		})
 		.catch((err)=> {
