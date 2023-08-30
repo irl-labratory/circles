@@ -8,6 +8,7 @@ const toCamelCase = (str) => {
   
     return camelCase;
   }
+  
 const colorArr = [
                 '#84DCC6',
                 '#A5FFD6',

@@ -42,7 +42,6 @@ const LoginPage = () => {
 			status:err,
 			message: `error occured logging in`})
 		})
-
 	},[]);
 
 

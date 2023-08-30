@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: true })); // important for forms!!
 
 
 // define route handlers 
+app.use('/', (req, res) => {console.log('Connection Est'); return res.status(200).json('Connection Established')});
 app.use('/api/user', userRouter)
 app.use('/api/event', eventRouter)
 app.use('/api/group', groupRouter)

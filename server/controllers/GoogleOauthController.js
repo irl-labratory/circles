@@ -29,7 +29,7 @@ GoogleOauthMiddleware.getGoogleAccesToken = (req, res, next) => {
         }
     })
     .then((data) =>{    
-    return data.json(); // parse the data to json
+        return data.json(); // parse the data to json
     })
     .then((data) => {
 
